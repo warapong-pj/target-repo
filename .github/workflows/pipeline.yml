@@ -1,10 +1,12 @@
-name: workflow_02
+name: job2's name
+
 on: 
-  - repository_dispatch
+  repository_dispatch:
+    types: ['job1-event']
+	  
 jobs:
-  cypress-run:
+  job2:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "Triggering Wokflow 2"
-      - name: Checkout
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v3

@@ -2,7 +2,7 @@ name: job2's name
 
 on:
   repository_dispatch:
-    types: [test_result]
+    types: [ job1-event ]
  
 jobs:
   job2:

@@ -1,9 +1,9 @@
 name: job2's name
 
-on: 
+on:
   repository_dispatch:
-    types: ['job1-event']
-	  
+    types: [test_result]
+ 
 jobs:
   job2:
     runs-on: ubuntu-latest

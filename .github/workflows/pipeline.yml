@@ -1,8 +1,6 @@
 name: job2's name
 
-on: 
-  repository_dispatch:
-    types: ['job1-event']
+on: repository_dispatch
 
 jobs:
   job2:

@@ -26,6 +26,7 @@ jobs:
 
           cd $APP_DIR
           kustomize edit set image ghcr.io/${{ github.actor }}/sample-app:${{ github.event.client_payload.version }}
+          kubectl kustomize
           
           cd -
           git config --global user.email "warapong.pj@gmail.com"

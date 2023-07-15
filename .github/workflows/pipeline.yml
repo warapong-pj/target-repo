@@ -10,9 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          if [ -d ${{ github.event.client_payload.application }} ]
+          #!/bin/sh
+
+          if [ ! -d ${{ github.event.client_payload.application }} ]
           then
-            echo "directory is existing"
-          else
             echo "directory dose not existing"
           fi

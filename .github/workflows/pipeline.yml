@@ -14,7 +14,11 @@ jobs:
 
           set -xe
           
-          which kustomize
+          if ! command -v kustomize &> /dev/null
+          then
+          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+              exit
+          fi
 
           APP_DIR="${{ github.event.client_payload.application }}/overlay/${{ github.event.client_payload.environment }}"
           
@@ -26,7 +30,7 @@ jobs:
 
           cd $APP_DIR
           kustomize edit set image ghcr.io/${{ github.actor }}/sample-app:${{ github.event.client_payload.version }}
-          ./kubectl kustomize
+          kustomize build
           
           cd -
           git config --global user.email "warapong.pj@gmail.com"

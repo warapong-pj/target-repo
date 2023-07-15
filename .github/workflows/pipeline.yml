@@ -35,7 +35,7 @@ jobs:
           cd -
           git config --global user.email "warapong.pj@gmail.com"
           git config --global user.name "warapong-pj"
-          git add -A
+          git add $APP_DIR
           git commit -m "ci: update ${{ github.event.client_payload.application }} image tag ${{ github.event.client_payload.version }}"
           git push origin ${{ github.ref_name }}
           

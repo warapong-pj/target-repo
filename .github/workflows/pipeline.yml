@@ -12,10 +12,25 @@ jobs:
       - run: |
           #!/bin/sh
 
+          set -xe
+          
+          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+
           APP_DIR="${{ github.event.client_payload.application }}/${{ github.event.client_payload.environment }}"
-          echo $APP_DIR
           
           if [ ! -d $APP_DIR ]
           then
             echo "directory dose not existing"
+            exit 1
           fi
+
+          cd $APP_DIR
+          kustomize edit set image ghcr.io/${{ github.actor }}/sample-app:${{ github.event.client_payload.version }}
+          
+          cd -
+          git config --global user.email "warapong.pj@gmail.com"
+          git config --global user.name "warapong-pj"
+          git add -A
+          git commit -m "ci: update ${{ github.event.client_payload.application }} image tag ${{ github.event.client_payload.version }}"
+          git push origin ${{ github.ref_name }}
+          

@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base
+
+namespace: prod
+
+images:
+- name: ghcr.io/warapong-pj/app
+  newName: ghcr.io/warapong-pj/app
+  newTag: 7760a8393b5cf4492e7ff400d17675f1d064cd9f

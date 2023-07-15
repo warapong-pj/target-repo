@@ -8,4 +8,4 @@ namespace: dev
 
 images:
 - name: ghcr.io/warapong-pj/sample-app
-  newTag: dev-23be28e
+  newTag: 1.0.0

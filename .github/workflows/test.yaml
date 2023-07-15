@@ -1,6 +1,7 @@
-name: Continuous Deployment
-on: 
-  workflow_call:
+name: test
+
+on:
+  workflow_dispatch:
     inputs:
       registry:
         required: true
@@ -13,11 +14,7 @@ on:
         type: string
 
 jobs:
-  deploy-pipeline:
+  log-the-inputs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          #!/bin/sh
-
-          echo "reusable workflows"
+      - uses: warapong-pj/target-repo/.github/workflows/pipeline.yml

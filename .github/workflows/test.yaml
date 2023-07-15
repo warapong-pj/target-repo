@@ -14,7 +14,7 @@ on:
         type: string
 
 jobs:
-  log-the-inputs:
+  build:
     uses: warapong-pj/target-repo/.github/workflows/docker.yml@main
     with:
       registry: ghcr.io/warapong-pj

@@ -1,13 +1,13 @@
-name: workflow_02
+name: workflow
 on: 
   repository_dispatch:
     types:
-      - smoke_test
+      - test
   
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Triggering Wokflow 2"
+      - run: echo "Triggering Wokflow"
       - name: Checkout
         uses: actions/checkout@v2

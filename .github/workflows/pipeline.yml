@@ -14,8 +14,7 @@ jobs:
 
           set -xe
           
-          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+          which kustomize
 
           APP_DIR="${{ github.event.client_payload.application }}/overlay/${{ github.event.client_payload.environment }}"
           

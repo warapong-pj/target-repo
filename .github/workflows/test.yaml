@@ -17,7 +17,6 @@ jobs:
   log-the-inputs:
     uses: warapong-pj/target-repo/.github/workflows/pipeline.yml@main
     with:
-      registry: "test"
-      application: "test"
-      version: "test"
-      
+      registry: ghcr.io/warapong-pj
+      application: sample-app
+      version: dev-2440421

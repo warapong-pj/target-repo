@@ -1,11 +1,11 @@
-name: workflow
+name: Continuous Deployment
 on: 
   repository_dispatch:
     types:
-      - continuous-deployment
+      - continuous deployment
   
 jobs:
-  test:
+  continuous-deployment:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

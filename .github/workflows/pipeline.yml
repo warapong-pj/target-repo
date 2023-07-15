@@ -16,7 +16,7 @@ jobs:
           
           curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
 
-          APP_DIR="${{ github.event.client_payload.application }}/${{ github.event.client_payload.environment }}"
+          APP_DIR="${{ github.event.client_payload.application }}/overlay/${{ github.event.client_payload.environment }}"
           
           if [ ! -d $APP_DIR ]
           then

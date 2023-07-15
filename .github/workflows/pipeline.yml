@@ -12,7 +12,10 @@ jobs:
       - run: |
           #!/bin/sh
 
-          if [ ! -d ${{ github.event.client_payload.application }} ]
+          APP_DIR="${{ github.event.client_payload.application }}/${{ github.event.client_payload.environment }}"
+          echo $APP_DIR
+          
+          if [ ! -d $APP_DIR ]
           then
             echo "directory dose not existing"
           fi

@@ -17,4 +17,4 @@ jobs:
   log-the-inputs:
     runs-on: ubuntu-latest
     steps:
-      - uses: warapong-pj/target-repo/.github/workflows/pipeline.yml
+      - uses: warapong-pj/target-repo/.github/workflows/pipeline.yml@main

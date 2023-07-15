@@ -8,6 +8,6 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Triggering Wokflow"
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - run: 'echo "field: ${{ github.event.client_payload.foo }}"'
+      - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'

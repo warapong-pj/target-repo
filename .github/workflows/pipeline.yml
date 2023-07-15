@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          'echo "field: ${{ github.event.client_payload.application }}"'
-          'echo "field: ${{ github.event.client_payload.environment }}"'
-          'echo "field: ${{ github.event.client_payload.version }}"'
+          echo "field: ${{ github.event.client_payload.application }}"
+          echo "field: ${{ github.event.client_payload.environment }}"
+          echo "field: ${{ github.event.client_payload.version }}"

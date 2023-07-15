@@ -15,7 +15,7 @@ on:
 
 jobs:
   log-the-inputs:
-    uses: warapong-pj/target-repo/.github/workflows/pipeline.yml@main
+    uses: warapong-pj/target-repo/.github/workflows/docker.yml@main
     with:
       registry: ghcr.io/warapong-pj
       application: sample-app

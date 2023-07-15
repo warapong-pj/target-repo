@@ -9,5 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: 'echo "field: ${{ github.event.client_payload.foo }}"'
+      - run: 'echo "field: ${{ github.event.client_payload.application }}"'
+      - run: 'echo "field: ${{ github.event.client_payload.version }}"'
       - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'

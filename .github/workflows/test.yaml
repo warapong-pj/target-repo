@@ -6,36 +6,21 @@ on:
       - test_event
 
 jobs:
-  build:
+  get-version:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout source codee
+      - name: checkout source code
         uses: actions/checkout@v3
-      - name: update kubernetes manifest
-        run: |
-          #!/bin/sh
-
-          set -e
-
-          echo "test trigger"
-          echo "payload registry '${{ github.event.client_payload.registry }}'"
-          echo "payload application '${{ github.event.client_payload.application }}'"
-          echo "payload version '${{ github.event.client_payload.version }}'"
-          echo "payload environment '${{ github.event.client_payload.environment }}'"
-          
-          if ! command -v kustomize &> /dev/null
-          then
-              curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
-          fi
-
-          APP_DIR="${{ github.event.client_payload.application }}/overlay/${{ github.event.client_payload.environment }}"
-
-          if [ ! -d $APP_DIR ]
-          then
-            echo "directory dose not existing"
-            exit 1
-          fi
-
-          # cd $APP_DIR
-          # kustomize edit set image ${{ github.event.client_payload.registry }}/${{ github.event.client_payload.application }}:${{ github.event.client_payload.version }}
-          # kustomize build
+      - name: set short commit sha
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+    outputs:
+      version-tag: ${{ steps.vars.outputs.sha_short }}
+  build:
+    needs: get-version
+    uses: warapong-pj/reusable-workflows/.github/workflows/update-kubernetes-manifest-with-kustomize.yaml@dev
+    with:
+      registry: ${{ github.event.client_payload.registry }}
+      application: ${{ github.event.client_payload.application }}
+      version: ${{ github.ref_name }}-${{ needs.get-version.outputs.version-tag }}
+      environment: ${{ github.event.client_payload.environment }}

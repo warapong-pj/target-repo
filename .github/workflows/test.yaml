@@ -36,6 +36,6 @@ jobs:
             exit 1
           fi
 
-          cd $APP_DIR
-          kustomize edit set image ghcr.io/${{ github.actor }}/sample-app:${{ github.event.client_payload.version }}
-          kustomize build
+          # cd $APP_DIR
+          # kustomize edit set image ${{ github.event.client_payload.registry }}/${{ github.event.client_payload.application }}:${{ github.event.client_payload.version }}
+          # kustomize build

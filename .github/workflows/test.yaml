@@ -11,5 +11,7 @@ jobs:
     steps:
       - run: |
           echo "test trigger"
-          echo "payload Foo '${{ github.event.client_payload.test_param1 }}'"
-          echo "payload Foo '${{ github.event.client_payload.test_param2 }}'"
+          echo "payload registry '${{ github.event.client_payload.registry }}"
+          echo "payload application '${{ github.event.client_payload.application }}'"
+          echo "payload version '${{ github.event.client_payload.version }}'"
+          echo "payload environment '${{ github.event.client_payload.environment }}'"

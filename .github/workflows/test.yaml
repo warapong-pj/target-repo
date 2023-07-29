@@ -26,7 +26,7 @@ jobs:
     #       ls
 
     needs: get-version
-    uses: warapong-pj/reusable-workflows/.github/workflows/update-kubernetes-manifest-with-kustomize.yaml@dev
+    uses: warapong-pj/reusable-workflows/.github/workflows/update-kubernetes-manifest-with-helm.yaml@dev
     with:
       registry: ${{ github.event.client_payload.registry }}
       application: ${{ github.event.client_payload.application }}

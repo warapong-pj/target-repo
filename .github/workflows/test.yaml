@@ -7,7 +7,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "test trigger"
+          echo "payload Foo '${{ github.event.client_payload.test_param1 }}'"
+          echo "payload Foo '${{ github.event.client_payload.test_param2 }}'"

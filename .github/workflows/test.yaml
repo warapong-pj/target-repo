@@ -1,22 +1,11 @@
 name: test
 
 on:
-  workflow_dispatch:
-    inputs:
-      registry:
-        required: true
-        type: string
-      application:
-        required: true
-        type: string
-      version:
-        required: true
-        type: string
+  workflow_dispatch: {}
 
 jobs:
   build:
-    uses: warapong-pj/target-repo/.github/workflows/docker.yaml@main
-    with:
-      registry: ghcr.io/warapong-pj
-      application: sample-app
-      version: dev-2440421
+    runs-on: ubuntu
+    steps:
+      - run: |
+          echo "test trigger"

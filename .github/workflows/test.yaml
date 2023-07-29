@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v3
       - name: test pipeline
         run: |
-          ls
+          ls ${{ github.event.client_payload.application }}
 
     # needs: get-version
     # uses: warapong-pj/reusable-workflows/.github/workflows/update-kubernetes-manifest-with-helm.yaml@dev

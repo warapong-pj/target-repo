@@ -6,21 +6,21 @@ on:
       - test_event
 
 jobs:
-  get-version:
+  # get-version:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: checkout source code
+  #       uses: actions/checkout@v3
+  #     - name: set short commit sha
+  #       id: vars
+  #       run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+  #   outputs:
+  #     version-tag: ${{ steps.vars.outputs.sha_short }}  
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: checkout source code
         uses: actions/checkout@v3
-      - name: set short commit sha
-        id: vars
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-    outputs:
-      version-tag: ${{ steps.vars.outputs.sha_short }}  
-  build:
-    # runs-on: ubuntu-latest
-    # steps:
-    #   - name: checkout source code
-    #     uses: actions/checkout@v3
     #   - name: test pipeline
     #     run: |
     #       FILE="${{ github.event.client_payload.application }}/values-${{ github.event.client_payload.environment }}.yaml"
@@ -29,11 +29,18 @@ jobs:
     #         echo "file dose not existing"
     #         exit 1
     #       fi
+      - name: check kustomize manifest
+        uses: bridgecrewio/checkov-action@master
+        with:
+          framework: kustomize
+          check: CKV_K8S_21,CKV_K8S_10,CKV_K8S_11
+          directory: sample-kustomize
+        # checkov --framework kustomize --check CKV_K8S_21,CKV_K8S_10,CKV_K8S_11 --directory PATH_TO_DIRECTORY
 
-    needs: get-version
-    uses: warapong-pj/reusable-workflows/.github/workflows/update-kubernetes-manifest-with-helm.yaml@dev
-    with:
-      registry: ${{ github.event.client_payload.registry }}
-      application: ${{ github.event.client_payload.application }}
-      version: ${{ github.event.client_payload.version }}
-      environment: ${{ github.event.client_payload.environment }}
+    # needs: get-version
+    # uses: warapong-pj/reusable-workflows/.github/workflows/update-kubernetes-manifest-with-helm.yaml@dev
+    # with:
+    #   registry: ${{ github.event.client_payload.registry }}
+    #   application: ${{ github.event.client_payload.application }}
+    #   version: ${{ github.event.client_payload.version }}
+    #   environment: ${{ github.event.client_payload.environment }}

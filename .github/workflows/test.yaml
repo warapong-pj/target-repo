@@ -33,9 +33,8 @@ jobs:
         uses: bridgecrewio/checkov-action@master
         with:
           framework: kustomize
-          check: CKV_K8S_21,CKV_K8S_10,CKV_K8S_11
-          skip_check: CKV_IGNORED_DIRECTORIES=/base/*
-          directory: sample-kustomize
+          check: CKV_K8S_21,CKV_K8S_10,CKV_K8S_11,CKV_K8S_12
+          directory: sample-kustomize/overlay/dev/
         # checkov --framework kustomize --check CKV_K8S_21,CKV_K8S_10,CKV_K8S_11 --directory PATH_TO_DIRECTORY
 
     # needs: get-version

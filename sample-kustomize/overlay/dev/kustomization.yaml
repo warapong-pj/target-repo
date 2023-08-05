@@ -9,3 +9,6 @@ namespace: dev
 images:
 - name: ghcr.io/warapong-pj/sample-app
   newTag: dev-2e36e3a
+
+patchesStrategicMerge:
+- patch-deployment.yaml

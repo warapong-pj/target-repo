@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-app
+  name: sample-kustomize
   labels:
-    app: sample-app
+    app: sample-kustomize
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sample-app
+      app: sample-kustomize
   template:
     metadata:
       labels:
-        app: sample-app
+        app: sample-kustomize
     spec:
       containers:
-      - name: sample-app
-        image: ghcr.io/warapong-pj/sample-app
+      - name: sample-kustomize
+        image: ghcr.io/warapong-pj/sample-kustomize
         ports:
         - name: http
           containerPort: 3000

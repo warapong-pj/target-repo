@@ -42,7 +42,7 @@ jobs:
 
           cd $APP_DIR
           kustomize edit set image ${{ github.event.client_payload.registry }}/${{ github.event.client_payload.application }}:${{ github.event.client_payload.version }}
-          cat kustomization.yaml
+          kustomize build
       # - name: checkout source code
       #   uses: actions/checkout@v3
       # - name: test pipeline

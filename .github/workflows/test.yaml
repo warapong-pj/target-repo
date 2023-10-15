@@ -18,6 +18,10 @@ jobs:
   #     version-tag: ${{ steps.vars.outputs.sha_short }}  
   test:
     # runs-on: ubuntu-latest
+    runs-on: actions_runner
+    steps:
+      - run: |
+          echo "test github actions runner"
     # steps:
     #   - name: checkout source code
     #     uses: actions/checkout@v3
@@ -68,9 +72,9 @@ jobs:
         # checkov --framework kustomize --check CKV_K8S_21,CKV_K8S_10,CKV_K8S_11,CKV_K8S_12 --directory PATH_TO_DIRECTORY
 
     # needs: get-version
-    uses: warapong-pj/reusable-workflows/.github/workflows/update-kubernetes-manifest-with-helm.yaml@dev
-    with:
-      registry: ${{ github.event.client_payload.registry }}
-      application: ${{ github.event.client_payload.application }}
-      version: ${{ github.event.client_payload.version }}
-      environment: ${{ github.event.client_payload.environment }}
+    # uses: warapong-pj/reusable-workflows/.github/workflows/update-kubernetes-manifest-with-helm.yaml@dev
+    # with:
+    #   registry: ${{ github.event.client_payload.registry }}
+    #   application: ${{ github.event.client_payload.application }}
+    #   version: ${{ github.event.client_payload.version }}
+    #   environment: ${{ github.event.client_payload.environment }}

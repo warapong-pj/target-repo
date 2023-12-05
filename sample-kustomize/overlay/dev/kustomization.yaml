@@ -7,8 +7,8 @@ resources:
 namespace: dev
 
 images:
-- name: ghcr.io/warapong-pj/sample-kustomize
-  newTag: v1.0.0
+- name: ghcr.io/warapong-pj/sample-app
+  newTag: dev-47828e9
 
 patches:
 - target:

@@ -9,7 +9,7 @@ namespace: dev
 
 images:
 - name: ghcr.io/warapong-pj/sample-app
-  newTag: dev-a80786e
+  newTag: dev-fbb8c35
 
 patches:
 - target:

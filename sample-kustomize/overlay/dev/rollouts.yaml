@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: sample-app
+spec:
+  # Number of desired pods.
+  # Defaults to 1.
+  replicas: 5
+
+  # WorkloadRef holds a references to a workload that provides Pod template 
+  # (e.g. Deployment). If used, then do not use Rollout template property.
+  workloadRef: 
+    apiVersion: apps/v1
+    kind: Deployment
+    name: sample-app
+
+  # The rollback window provides a way to fast track deployments to
+  # previously deployed versions.
+  # Optional, and by default is not set.
+  rollbackWindow:
+    revisions: 3
+
+  strategy:
+    # Canary update strategy
+    canary:
+      # The maximum number of pods that can be unavailable during the update.
+      # Value can be an absolute number (ex: 5) or a percentage of total pods
+      # at the start of update (ex: 10%). Absolute number is calculated from
+      # percentage by rounding down. This can not be 0 if  MaxSurge is 0. By
+      # default, a fixed value of 1 is used. Example: when this is set to 30%,
+      # the old RC can be scaled down by 30% immediately when the rolling
+      # update starts. Once new pods are ready, old RC can be scaled down
+      # further, followed by scaling up the new RC, ensuring that at least 70%
+      # of original number of pods are available at all times during the
+      # update. +optional
+      maxUnavailable: 1
+
+      # Steps define sequence of steps to take during an update of the
+      # canary. Skipped upon initial deploy of a rollout. +optional
+      steps:
+
+      # Sets the ratio of canary ReplicaSet to 20%
+      - setWeight: 20
+      - setWeight: 40
+      - setWeight: 80

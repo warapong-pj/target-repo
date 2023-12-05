@@ -42,4 +42,5 @@ spec:
       # Sets the ratio of canary ReplicaSet to 20%
       - setWeight: 20
       - setWeight: 40
+      - pause: {}
       - setWeight: 80
